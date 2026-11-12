@@ -120,9 +120,45 @@ In terminal 2 (Frontend UI on `http://localhost:5173`):
 npm run dev:client
 ```
 
+Open `http://localhost:5173` in your browser.
+
 ---
 
-## 3. Running Automated Backend Tests
+## 3. How to Use BookNest
+
+### For Customers
+
+1. **Browse & Search Books:**
+   - Visit the **Home** page to view featured titles and categories, or open **All Books** (`/books`).
+   - Use the navbar search bar or the **All Books** filters to search by title/author, filter by category (`Fiction`, `Technology`, `Education`, `Business`, `Self-Help`, `Mystery`), and sort by newest, price, or title.
+   - Click any book card to open its **Book Details** page (`/books/:id`) with description, ISBN, price, and live stock availability.
+2. **Manage Shopping Cart:**
+   - Click **Add to Cart** from any book card or details page.
+   - Open **Cart** (`/cart`) to adjust quantities (automatically capped by available stock), remove items, and review your subtotal.
+3. **Register, Log In & Checkout:**
+   - Click **Register** (`/register`) to create a customer account, or **Login** (`/login`) if you already have one.
+   - From **Cart**, click **Proceed to Checkout** (`/checkout`), enter your delivery address, and place your **Cash on Delivery (COD)** order.
+   - Stock and prices are verified on the server during checkout, and an order confirmation summary is displayed immediately.
+4. **Track Orders & Update Profile:**
+   - Open **My Orders** (`/orders`) from the user menu to track order statuses (`Pending` → `Confirmed` → `Shipped` → `Delivered`).
+   - Open **Profile** (`/profile`) to save your phone number and default shipping address for faster future checkouts.
+
+### For Administrators
+
+1. **Log In as Admin:**
+   - Run `npm run seed` after configuring `ADMIN_EMAIL` and `ADMIN_PASSWORD` in `server/.env`.
+   - Log in at `/login` using those admin credentials; you will be redirected to the **Admin Dashboard** (`/admin`).
+2. **Monitor Store Overview:**
+   - View total books, total orders, total customers, low-stock alerts (`stock <= 5`), and recent orders.
+3. **Manage Book Inventory:**
+   - Go to **Manage Books** (`/admin/books`) to search inventory, update stock quantities inline (`Save`), edit book details (`/admin/books/:id/edit`), or delete books with confirmation.
+   - Click **+ Add New Book** (`/admin/books/new`) to publish a new title with cover image preview.
+4. **Manage Customer Orders:**
+   - Go to **Manage Orders** (`/admin/orders`) to filter orders by status and update any order to `Pending`, `Confirmed`, `Shipped`, or `Delivered`.
+
+---
+
+## 4. Running Automated Backend Tests
 
 The server includes an automated integration test suite using Node's built-in test runner and `mongodb-memory-server`:
 
@@ -132,7 +168,7 @@ npm run test:server
 
 ---
 
-## 4. API Endpoints Overview
+## 5. API Endpoints Overview
 
 - **Auth:** `POST /api/auth/register`, `POST /api/auth/login`, `GET /api/auth/me`, `PUT /api/auth/me`
 - **Books:** `GET /api/books`, `GET /api/books/:id`, `POST /api/books` (admin), `PUT /api/books/:id` (admin), `DELETE /api/books/:id` (admin)
@@ -142,7 +178,7 @@ npm run test:server
 
 ---
 
-## 5. Deployment Guide
+## 6. Deployment Guide
 
 ### Backend on Render
 
